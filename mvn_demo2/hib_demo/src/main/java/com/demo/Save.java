@@ -13,18 +13,13 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-public class HibernteDemo {
+import com.customerapp.customer.HibernateSessionFactory;
+
+public class Save {
 
 	public static void main(String[] args) throws ParseException {
 		
-		StandardServiceRegistry serviceRegistry=
-				new StandardServiceRegistryBuilder()
-				.configure("hibernate.cfg.xml").build();
-	
-		//factory dp
-		//SessionFactory---->	Session
-		SessionFactory factory=new MetadataSources(serviceRegistry)
-				.buildMetadata().buildSessionFactory();
+		SessionFactory factory=HibernateSessionFactory.getSessionFactory();
 	
 		Session session=factory.openSession();
 		
@@ -34,6 +29,10 @@ public class HibernteDemo {
 		Date date1=fmt.parse("09/11/1976");
 		
 		Transaction tx=session.getTransaction();
+		
+		//Spring just make confi of any framework easy for you ( java based)
+		//rather then explicit tx mgt :(
+		//we can spring for decleartive tx :)
 		
 		try {
 			tx.begin();
