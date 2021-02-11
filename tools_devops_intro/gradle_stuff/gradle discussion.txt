@@ -15,7 +15,56 @@ What is Gradle ?
 	LinkedIn, Google, and Netflix use Gradle
 
 
+Key features of gradle:
+-------------------
+	Gradle is declarative 
+	gradel having life cycle similer to maven
+	gradle works with multipe repo like maven, ivy, google etc
+	gradle have incremental build process
+	give standad dir structure
+	gradle cache feature give lots of reusability of plugins jar etc
+	easy to develop multi module project
+	convert maven to gradle project
+	integration with multiple ides
+	no need to write build script in xml ...we can use groovy (DSL)
 
+Customized build tool:
+------------------
+	Gradle allow to write build script in different languages like groovy,kotlin etc
+	it can be used for diff jvm based languages like java, scala kotlin
+
+Fast
+----
+	better performance then maven
+	use incremental build process
+	give gradle caching concept to reuse jars, plugins etc
+
+powerful
+--------
+	so many facilities to make build process easy like gradlew (gradle wrapper)
+	to use gradle without installing it
+	Ability to work with multiple repo to get jars
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 Why Gradle ?
 --------
 	Free and open-source
