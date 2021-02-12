@@ -12,58 +12,61 @@ public class Main {
 
 		Session session = factory.openSession();
 		
-		//fetch join
+		session.getTransaction().begin();
 		
-	
-		//Parking parking=session.get(Parking.class, 2);
+		//N+1 problem : one query for getting all dept and then one query each for getting emp of each dept
+		// 1+ 3
+		//from Department d join fetch d.employees Employee
+		List<Department> departments=session
+				.createQuery("select d from Department d").getResultList();
 		
-		//System.out.println(parking);
-	
-		//System.out.println(parking.getEmployee());
+		for(Department department: departments) {
+			System.out.println(department);
+			List<Employee> employees=department.getEmployees();
+			for(Employee employee: employees) {
+				System.out.println(employee);
+			}
+		}
+		
+		
+//		Department department1=new Department("12A", "sales", "amit");
+//		Department department2=new Department("1MA", "it", "amit");
+//		Department department3=new Department("QA", "mkt", "amit");
+//		
+//		
+//		Employee employee1=new Employee("raja");
+//		Employee employee2=new Employee("amit");
+//		Employee employee3=new Employee("sumit");
+//		Employee employee4=new Employee("ekta");
+//
+//		Employee employee5=new Employee("keshav");
+//		Employee employee6=new Employee("gunika");
+//		Employee employee7=new Employee("rajiv");
+//		
+//		department1.getEmployees().add(employee1);
+//		department1.getEmployees().add(employee2);
+//		
+//		department2.getEmployees().add(employee3);
+//		department2.getEmployees().add(employee4);
+//		
+//		department3.getEmployees().add(employee5);
+//		department3.getEmployees().add(employee6);
+//		department3.getEmployees().add(employee7);
+//		
+//	
+//		session.save(department1);
+//		session.save(department2);
+//		session.save(department3);
+//		
+		/*
+		 * session.save(employee1); session.save(employee2); session.save(employee3);
+		 * session.save(employee4); session.save(employee5); session.save(employee6);
+		 * session.save(employee7);
+		 */
+		
+		session.getTransaction().commit();
 		
 		session.close();
 		factory.close();
-
-//		
-//		Employee employee1=new Employee("raj");
-//		Employee employee2=new Employee("ekta");
-//		Employee employee3=new Employee("gun");
-//		Employee employee4=new Employee("keshav");
-//		Employee employee5=new Employee("vikas");
-//		
-//		Parking parking1=new Parking("A12");
-//		Parking parking2=new Parking("M2");
-//		Parking parking3=new Parking("B2");
-//		Parking parking4=new Parking("T11");
-//		Parking parking5=new Parking("U12");
-//		
-//		
-//		parking1.setEmployee(employee1);
-//		parking2.setEmployee(employee2);
-//		parking3.setEmployee(employee3);
-//		parking4.setEmployee(employee4);
-//		parking5.setEmployee(employee5);
-//		
-//		Session session=factory.openSession();
-//		
-//		session.getTransaction().begin();
-//		
-//		session.persist(parking1);
-//		session.persist(parking2);
-//		session.persist(parking3);
-//		session.persist(parking4);
-//		session.persist(parking5);
-//		
-
-//
-//		session.persist(employee1);
-//		session.persist(employee2);
-//		session.persist(employee3);
-//		session.persist(employee4);
-//		session.persist(employee5);
-//	
-
-		// session.getTransaction().commit();
-
 	}
 }

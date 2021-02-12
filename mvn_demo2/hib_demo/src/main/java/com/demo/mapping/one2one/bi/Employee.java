@@ -1,5 +1,6 @@
 package com.demo.mapping.one2one.bi;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Employee {
 
 	private String empName;
 
-	@OneToOne(mappedBy = "employee")
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
 	private Parking parking;
 
 	public Parking getParking() {

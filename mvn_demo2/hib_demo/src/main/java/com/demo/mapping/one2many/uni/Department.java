@@ -13,9 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 @Entity
 @Table(name = "dept_table_one_to_many_uni")
-public class Dept {
+public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int deptId;
@@ -32,7 +34,7 @@ public class Dept {
 	public void setDeptCode(String deptCode) {
 		this.deptCode = deptCode;
 	}
-
+	@BatchSize(size = 3)
 	@JoinColumn(name = "did_fk", nullable = false)
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<Employee> employees = new ArrayList<>();
@@ -69,14 +71,21 @@ public class Dept {
 		this.deptHead = deptHead;
 	}
 
-	public Dept(String deptCode, String deptName, String deptHead) {
+	public Department(String deptCode, String deptName, String deptHead) {
 		super();
 		this.deptCode = deptCode;
 		this.deptName = deptName;
 		this.deptHead = deptHead;
 	}
 
-	public Dept() {
+	public Department() {
 	}
 
+	@Override
+	public String toString() {
+		return "Department [deptId=" + deptId + ", deptCode=" + deptCode + ", deptName=" + deptName + ", deptHead="
+				+ deptHead + "]";
+	}
+
+	
 }

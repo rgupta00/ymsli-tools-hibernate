@@ -30,17 +30,28 @@
 
 		<!-- jdbc connection pool build in -->
 
-		<property name="connection.pool_size">1</property>
+		<property name="connection.pool_size">10</property>
 
 		<property name="current_session_context_class">thread</property>
-		<!-- <mapping class="com.demo.mapping.one2many.uni.Dept" />
-		<mapping class="com.demo.mapping.one2many.uni.Employee" /> -->
-		
-		<mapping class="com.demo.mapping.many2many.bi.Project" />
-		<mapping class="com.demo.mapping.many2many.bi.Employee" />
-		
+		<!-- <mapping class="com.demo.mapping.one2many.uni.Dept" /> <mapping class="com.demo.mapping.one2many.uni.Employee" 
+			/> -->
+
+		<!-- <mapping class="com.demo.mapping.one2many.uni.Department" /> <mapping 
+			class="com.demo.mapping.one2many.uni.Employee" /> -->
+
 		<!-- <mapping class="com.demo.lifecycle.Customer" /> -->
 
-
+		<!-- <mapping class="com.demo.mapping.inh.singletable.Account" />
+		<mapping class="com.demo.mapping.inh.singletable.SavingAccount" />
+		<mapping class="com.demo.mapping.inh.singletable.CurrentAccount" /> -->
+		
+	<!-- 	<mapping class="com.demo.mapping.inh.joined.Account" />
+		<mapping class="com.demo.mapping.inh.joined.SavingAccount" />
+		<mapping class="com.demo.mapping.inh.joined.CurrentAccount" />
+		 -->
+		 	<mapping class="com.demo.mapping.inh.table_per_con.Account" />
+		<mapping class="com.demo.mapping.inh.table_per_con.SavingAccount" />
+		<mapping class="com.demo.mapping.inh.table_per_con.CurrentAccount" />
+		
 	</session-factory>
 </hibernate-configuration>

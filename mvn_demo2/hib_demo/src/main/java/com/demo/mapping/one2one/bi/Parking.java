@@ -22,8 +22,8 @@ public class Parking {
 	
 	
 	private String parkingLocation;
-	@JoinColumn(name = "empId_fk")
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "empId_fk", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
 	private Employee employee;
 
 	

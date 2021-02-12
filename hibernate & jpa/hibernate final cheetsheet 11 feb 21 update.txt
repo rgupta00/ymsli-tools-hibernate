@@ -756,7 +756,7 @@ xxxxxxxxxxxxxxxxxxx
 		private String parkingLocation;
 	
 		private Employee employee;
-
+	}
 
 
 	
@@ -766,8 +766,7 @@ xxxxxxxxxxxxxxxxxxx
 
 		private Parking parking;
 
-
-
+	}
 
 
 
@@ -1674,6 +1673,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
+
 Hibernate caching example:
 =========================
 http://howtodoinjava.com/2013/07/04/hibernate-ehcache-configuration-tutorial/
@@ -1804,7 +1804,7 @@ table per class
 Domain design
 -----------------------------
 - Book
-	N	   M	       1             1	1	
+	N	   M	       1             N	
 - Book --------<>------- Author ----<>-------Address
   			  |
 			  ----- List of phones
@@ -1822,10 +1822,142 @@ Ebook PaperBook
 - Book ------<>--------- Publisher --<>-------OfficeAddress
 
 
+-------------------------------------
+Data:
+--------------------------
+
+one to one : uni:
+----------------
+Employee employee1=new Employee("raj");
+		Employee employee2=new Employee("ekta");
+		Employee employee3=new Employee("gun");
+		Employee employee4=new Employee("keshav");
+		Employee employee5=new Employee("vikas");
+		
+		Parking parking1=new Parking("A12");
+		Parking parking2=new Parking("M2");
+		Parking parking3=new Parking("B2");
+		Parking parking4=new Parking("T11");
+		Parking parking5=new Parking("U12");
+		
+		
+		parking1.setEmployee(employee1);
+		parking2.setEmployee(employee2);
+		parking3.setEmployee(employee3);
+		parking4.setEmployee(employee4);
+		parking5.setEmployee(employee5);
+		
+		Session session=factory.openSession();
+		
+		session.getTransaction().begin();
+		
+		session.persist(parking1);
+		session.persist(parking2);
+		session.persist(parking3);
+		session.persist(parking4);
+		session.persist(parking5);
+		
+		
+//
+//		session.persist(employee1);
+//		session.persist(employee2);
+//		session.persist(employee3);
+//		session.persist(employee4);
+//		session.persist(employee5);
+//	
+	
+
+
+
+one to one bi directinal:
+-------------------------
+
+Employee employee1 = new Employee("sumit");
+		Employee employee2 = new Employee("ekta");
+		Employee employee3 = new Employee("gun");
+		Employee employee4 = new Employee("keshav");
+		Employee employee5 = new Employee("vikas");
+
+		Parking parking1 = new Parking("A12");
+		Parking parking2 = new Parking("M2");
+		Parking parking3 = new Parking("B2");
+		Parking parking4 = new Parking("T11");
+		Parking parking5 = new Parking("U12");
+
+		parking1.setEmployee(employee1);
+		parking2.setEmployee(employee2);
+		parking3.setEmployee(employee3);
+		parking4.setEmployee(employee4);
+		parking5.setEmployee(employee5);
+		
+		employee1.setParking(parking1);
+		employee2.setParking(parking2);
+		employee3.setParking(parking3);
+		employee4.setParking(parking4);
+		employee5.setParking(parking5);
+		
+		
+
+		session.persist(parking1);
+		session.persist(parking2);
+		session.persist(parking3);
+		session.persist(parking4);
+		session.persist(parking5);
 
 
 
 
+one to many data:
+-----------------------
+
+			Department department1=new Department("IT");
+			Department department2=new Department("sales");
+			Department department3=new Department("mkt");
+			Department department4=new Department("r&d");
+			
+			Employee employee1=new Employee("raja");
+			Employee employee2=new Employee("amit");
+			Employee employee3=new Employee("sumit");
+			Employee employee4=new Employee("ekta");
+
+			Employee employee5=new Employee("keshav");
+			Employee employee6=new Employee("gunika");
+			Employee employee7=new Employee("rajiv");
+			
+			department1.getEmployees().add(employee1);
+			department1.getEmployees().add(employee2);
+			
+			department2.getEmployees().add(employee3);
+			department2.getEmployees().add(employee4);
+			
+			department3.getEmployees().add(employee5);
+			department3.getEmployees().add(employee6);
+			department3.getEmployees().add(employee7);
+			
+			employee1.setDepartment(department1);
+			employee2.setDepartment(department1);
+			
+			
+			employee3.setDepartment(department2);
+			employee4.setDepartment(department2);
+			
+			employee5.setDepartment(department3);
+			employee6.setDepartment(department3);
+			employee7.setDepartment(department3);
+			
+			
+			
+			session.save(department1);
+			session.save(department2);
+			session.save(department3);
+			
+			session.save(employee1);
+			session.save(employee2);
+			session.save(employee3);	
+			session.save(employee4);
+			session.save(employee5);
+			session.save(employee6);
+			session.save(employee7);
 References:
 ----------
 http://learningviacode.blogspot.in/2012/02/hibernate-object-life-cycle.html
