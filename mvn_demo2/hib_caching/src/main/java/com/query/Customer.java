@@ -1,23 +1,38 @@
-package com.demo;
+package com.query;
 
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "customer_table_jpa")
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Table(name = "customer_table")
 @Entity
- public class Customer {
+//HQL
+@NamedQueries({
+	@NamedQuery(name = "findAll.customer", query = "select c from Customer c"),
+	@NamedQuery(name = "findAll.customerByAddress", query = "select c from Customer c where c.address=:address")
+})
+//SQL
+@NamedNativeQueries({
+	@NamedNativeQuery(name="findAllNative", query = "select * from customer_table")
+})
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String address;
 	private String mobile;
-	
 	private String email;
 	private Date dob;
 	

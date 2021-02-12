@@ -19,11 +19,13 @@ public class DemoJpa {
 
 		EntityTransaction tx = em.getTransaction();
 		
+		
 		try {
 			tx.begin();
-			Customer customer = new Customer("raj", "delhi", "797987798", "r@gmail.com", new Date());
-
-			em.persist(customer);
+			//Address add=new Address("A12", "no 12", "no 13", "delhi", "KN", "110051");
+			Address address=em.find(Address.class, 	1L);
+			System.out.println(address);
+			//em.persist(add);
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();

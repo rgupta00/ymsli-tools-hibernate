@@ -2,22 +2,25 @@ package com.demo;
 
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "customer_table_jpa")
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+@Table(name = "customer_table")
 @Entity
- public class Customer {
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String address;
 	private String mobile;
-	
 	private String email;
 	private Date dob;
 	
