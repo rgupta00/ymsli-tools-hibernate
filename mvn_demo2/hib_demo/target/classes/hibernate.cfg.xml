@@ -26,7 +26,7 @@
 			modifty the table at any cost, just validation that? update: dont create 
 			new table, if it already exist, if table is not there it will create new 
 			table if u have extra field in pojo it update the table accordingly... -->
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 
 		<!-- jdbc connection pool build in -->
 
@@ -49,9 +49,11 @@
 		<mapping class="com.demo.mapping.inh.joined.SavingAccount" />
 		<mapping class="com.demo.mapping.inh.joined.CurrentAccount" />
 		 -->
-		 	<mapping class="com.demo.mapping.inh.table_per_con.Account" />
-		<mapping class="com.demo.mapping.inh.table_per_con.SavingAccount" />
-		<mapping class="com.demo.mapping.inh.table_per_con.CurrentAccount" />
+		 
+	<!-- 	<mapping class="com.demo.mapping.inh.joined2.Account" />
+		<mapping class="com.demo.mapping.inh.joined2.SavingAccount" />
+		<mapping class="com.demo.mapping.inh.joined2.PoorSavingAccount" />  -->
 		
+		<mapping class="com.demo.doubts.Customer"/>
 	</session-factory>
 </hibernate-configuration>
